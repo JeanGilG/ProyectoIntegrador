@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mybatis.mapper.ProductoMapper">
+<insert id="idInsertarProducto" parameterType="ProductoIbatis">
+	INSERT INTO producto VALUES (null,#{nombProd},#{precio_venta},#{precio_compra},#{stock},#{fecha_ingreso},#{lote},#{fecha_fab},#{idDetOrden},#{idCate})
+</insert>
+<select id="idListarTodosProductos" resultType="ProductoIbatis" >
+	SELECT idProd as idProd,
+			p.nomProd as nombProd,
+			p.precio_venta as precio_venta,
+			p.precio_compra as precio_compra,
+			p.stock as stock,
+			p.fecha_ingreso as fecha_ingreso,
+			p.lote as lote,
+			p.fecha_fab as fecha_fab,
+			p.detalleorden_idDetOrden as idDetOrden,
+			p.categoria_idCate as idCate
+	FROM producto p;
+			
+</select>
+<delete id="idEliminarProducto" parameterType="int">
+		DELETE FROM producto WHERE idProd = #{idProd}
+</delete>
+<update id="idActualizarProducto"  parameterType="ProductoIbatis">
+	UPDATE producto SET
+			
+			nomProd =#{nombProd},
+			precio_venta =#{precio_venta},
+			precio_compra =#{precio_compra},
+			stock =#{stock},
+			fecha_ingreso =#{fecha_ingreso},
+			lote =#{lote},
+			fecha_fab =#{fecha_fab},
+			detalleorden_idDetOrden =#{idDetOrden},
+			categoria_idCate =#{idCate}
+			
+	WHERE 	
+			idProd =#{idProd}
+</update>
+
+<select id="idConsultarPKProducto" resultType="ProductoIbatis" >
+	SELECT  p.idProd as idProd,
+			p.nomProd as nombProd,
+			p.precio_venta as precio_venta,
+			p.precio_compra as precio_compra,
+			p.stock as stock,
+			p.fecha_ingreso as fecha_ingreso,
+			p.lote as lote,
+			p.fecha_fab as fecha_fab,
+			p.detalleorden_idDetOrden as idDetOrden,
+			p.categoria_idCate as idCate
+	FROM producto p
+	WHERE idProd =#{idProd}
+</select>
+
+</mapper>

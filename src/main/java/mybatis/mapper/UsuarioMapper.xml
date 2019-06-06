@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mybatis.mapper.UsuarioMapper">
+<insert id="idInsertarUsuario" parameterType="UsuarioIbatis">
+	INSERT INTO usuario VALUES (null,#{apeUsu},#{nomUsu},#{claveUsu},#{idTipoEmpleado})
+</insert>
+<select id="idListarTodosUsuarios" resultType="UsuarioIbatis" >
+	SELECT 	idUsu as idUsu,
+			apeUsu as apeUsu,
+			nomUsu as nomUsu,
+			claveUsu as claveUsu,
+			tipoempleado_idTipoEmp as idTipoEmpleado
+	FROM usuario;
+</select>
+<delete id="idEliminarUsuario" parameterType="int">
+		DELETE FROM usuario WHERE idUsu = #{idUsu}
+</delete>
+<update id="idActualizarUsuario"  parameterType="UsuarioIbatis">
+	UPDATE usuario SET
+			apeUsu =#{apeUsu},
+			nomUsu =#{nomUsu},
+			claveUsu =#{claveUsu},
+			tipoempleado_idTipoEmp =#{idTipoEmpleado}
+	WHERE	idUsu =#{idUsu}
+</update>
+<select id="idConsultarPKUsuario" resultType="UsuarioIbatis" >
+		SELECT 	idUsu as idUsu,
+			apeUsu as apeUsu,
+			nomUsu as nomUsu,
+			claveUsu as claveUsu,
+			tipoempleado_idTipoEmp as idTipoEmpleado
+	FROM usuario
+	WHERE idUsu =#{idUsu}
+</select>	
+</mapper>
